@@ -1,0 +1,77 @@
+﻿    
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model FooterModel
+
+@if (Model != null)
+{
+
+    <!-- Footer Start -->
+    <div class="footer wow fadeIn" data-wow-delay="0.3s">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="footer-contact">
+                        <h2>@Html.Sitecore().Field("Office_Title", Model.Item)</h2>
+                        @foreach (var item in Model.Footer)
+                        {
+                            <p><i class="@item.FlatIcon"></i>@item.Office_Data</p>
+                        }
+                        <div class="footer-social">
+                        @foreach (var iconitem in Model.SocailIcon)
+                        {
+                            <a href=""><i class="@iconitem.Social_Icon"></i></a>
+                        }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="footer-link">
+                        <h2>@Html.Sitecore().Field("Service_Link_Title", Model.Item)</h2>
+                        @foreach (var serviceLinkitem in Model.ServiceLink)
+                        {
+                            @serviceLinkitem.Service_Link
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="footer-link">
+                        <h2>@Html.Sitecore().Field("UseFul_Link_Title", Model.Item)</h2>
+                        @foreach (var usefulllink in Model.UsefulLink)
+                        {
+                            @usefulllink.Footer_links
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="newsletter">
+                        <h2>@Html.Sitecore().Field("Newsletter_Title", Model.Item)</h2>
+                            @Html.Sitecore().Field("Newsletter_Description", Model.Item)
+                        <div class="form">
+                            <input class="form-control" placeholder="Email here">
+                            <button class="btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container footer-menu">
+            <div class="f-menu">
+                @Html.Sitecore().Placeholder("Containerfooter")
+            </div>
+        </div>
+        <div class="container copyright">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; <a href="#">Your Site Name</a>, All Right Reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+}

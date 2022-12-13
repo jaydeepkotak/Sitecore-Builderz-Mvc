@@ -1,0 +1,39 @@
+﻿
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model ServiceModel
+
+@if (Model != null)
+{
+    <!-- Service Start -->
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>@Html.Sitecore().Field("Title", Model.Item)</p>
+                <h2>@Html.Sitecore().Field("SubTitle", Model.Item)</h2>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.Service)
+                {
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item">
+                            <div class="service-img">
+                                @item.Image
+                                <div class="service-overlay">
+                                    @item.Detail
+                                </div>
+                            </div>
+                            <div class="service-text">
+                                <h3>@item.Title</h3>
+                                <a class="btn" href="img/service-1.jpg" data-lightbox="service">+</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+}

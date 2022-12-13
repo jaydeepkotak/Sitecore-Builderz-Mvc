@@ -1,0 +1,46 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model NavigationModel
+
+<!-- Nav Bar Start -->
+<div class="nav-bar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <a href="#" class="navbar-brand">MENU</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+
+                    @foreach (var item in Model.Navigation)
+                    {
+                        if (@item.NavigationTitle.ToString() == "Pages")
+                        {
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@item.NavigationTitle</a>
+                                <div class="dropdown-menu">
+                                    @foreach (var itm in Model.NavigationChild)
+                                    {
+                                        @itm.ChildNavigationLink
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            @item.NavigationLink
+                        }
+                    }
+                </div>
+                <div class="ml-auto">
+                    @Html.Sitecore().BeginField("CallToAction", new { @class = "btn" })
+                    @Html.Sitecore().EndField()
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Nav Bar End -->

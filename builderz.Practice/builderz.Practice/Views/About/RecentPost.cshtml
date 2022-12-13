@@ -1,0 +1,29 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model SinglePostModel
+
+
+@if (Model != null)
+{
+    <div class="sidebar-widget wow fadeInUp">
+        <h2 class="widget-title">@Html.Sitecore().Field("Main_Title", Model.Item)</h2>
+        <div class="recent-post">
+            @foreach (var item in Model.RecentPost)
+            {
+                <div class="post-item">
+                    <div class="post-img">
+                        @item.Image
+                    </div>
+                    <div class="post-text">
+                        <a href="">@item.TitleLink</a>
+                        <div class="post-meta">
+                            <p>By<a href="">@item.PostBy</a></p>
+                            <p>In<a href="">@item.In</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

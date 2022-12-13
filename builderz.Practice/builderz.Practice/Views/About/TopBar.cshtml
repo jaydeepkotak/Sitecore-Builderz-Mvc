@@ -1,0 +1,39 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model TopBarModel
+
+<!-- Top Bar Start -->
+<div class="top-bar">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-4 col-md-12">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>@Html.Sitecore().Field("TopTitle", Model.Item)</h1>
+                        <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                <div class="row">
+                    @foreach (var item in Model.Top)
+                    {
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="@item.Flaticon"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>@item.Contact</h3>
+                                    <p>@item.ContactData</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Top Bar End -->

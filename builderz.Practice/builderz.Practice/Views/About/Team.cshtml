@@ -1,0 +1,48 @@
+﻿
+
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model TeamModel
+
+@if (Model != null)
+{
+    <!-- Team Start -->
+    <div class="team">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>@Html.Sitecore().Field("Title", Model.Item)</p>
+                <h2>@Html.Sitecore().Field("SubTitle", Model.Item)</h2>
+            </div>
+            <div class="row">
+                @{
+                    double delay = 0.0;
+                    string s;
+                }
+                @foreach (var item in Model.OurTeam)
+                {
+                    delay = delay + 0.1;
+                    s = delay + "s";
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="@s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                @item.Image
+                            </div>
+                            <div class="team-text">
+                                <h2>@item.Name</h2>
+                                <p>@item.Designation</p>
+                            </div>
+                            <div class="team-social">
+                                <a class="social-tw" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="social-fb" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="social-li" href=""><i class="fab fa-linkedin-in"></i></a>
+                                <a class="social-in" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+<!-- Team End -->

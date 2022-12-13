@@ -1,0 +1,39 @@
+﻿
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model AboutFactModel
+
+@{ 
+    var c = 2;
+}
+<!-- Fact Start -->
+<div class="fact">
+    <div class="container-fluid">
+        <div class="row counters">
+            @if (Model != null)
+            {
+                for (int i = 0; i < Model.Fact.Count / 2; i++)
+                {
+                    var activeClass = i == 0 ? "col-md-6 fact-left wow slideInLeft" : "col-md-6 fact-right wow slideInRight";
+                    <div class="@activeClass">
+                        <div class="row">
+                            @for (int j = c;j< Model.Fact.Count;j++)
+                            {
+                                <div class="col-6">
+                                    <div class="fact-icon">
+                                        <i class="@Model.Fact[j].FactIcon"></i>
+                                    </div>
+                                    <div class="fact-text">
+                                        <h2 data-toggle="counter-up">@Model.Fact[j].Score</h2>
+                                        <p>@Model.Fact[j].Title</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model FeatureModel
+
+
+@if (Model != null)
+{
+    <!-- Feature Start-->
+    <div class="feature wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                @foreach (var item in Model.Featuredata)
+                {
+                    <div class="col-lg-4 col-md-12">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="@item.FlatIcon"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>@item.Feature_Title</h3>
+                                @item.Feature_Description
+                            </div>                           
+                        </div>
+                    </div>
+                }
+                </div>
+        </div>
+    </div>
+    <!-- Feature End-->
+}

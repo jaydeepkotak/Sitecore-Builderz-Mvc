@@ -1,0 +1,16 @@
+﻿
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model FooterModel
+
+@if (Model != null)
+{
+
+    foreach (var containeritem in Model.ContainerLink)
+    {
+        @containeritem.Link_Container
+    }
+    <!-- Footer End -->
+
+}

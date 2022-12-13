@@ -1,0 +1,10 @@
+﻿@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model RenderingModel
+
+<div class="sidebar-widget wow fadeInUp">
+    <div class="image-widget">
+        <a href="#">@Html.Sitecore().Field("Image", Model.Item)</a>
+    </div>
+</div>
