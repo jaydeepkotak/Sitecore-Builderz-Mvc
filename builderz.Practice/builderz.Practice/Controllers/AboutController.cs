@@ -553,5 +553,38 @@ namespace builderz.Practice.Controllers
             return View(model);
         }
 
+        public ActionResult Blog()
+        {
+            var model = new BlogModel()
+            {
+                Item = RenderingContext.Current?.Rendering.Item
+            };
+            List<Blogcard> blogcards = new List<Blogcard>();
+            var dataSource = RenderingContext.Current?.Rendering.Item;
+            MultilistField blogField = dataSource.Fields["Cards"];
+            var slideItems = blogField.GetItems();
+
+            foreach (var slideItem in slideItems)
+            {
+                var image = new MvcHtmlString(FieldRenderer.Render(slideItem, "Image"));
+                var name = new MvcHtmlString(FieldRenderer.Render(slideItem, "Blog_Name"));
+                var description = new MvcHtmlString(FieldRenderer.Render(slideItem, "Blog_Description"));
+                var postby = new MvcHtmlString(FieldRenderer.Render(slideItem, "PostBy"));
+                var In = new MvcHtmlString(FieldRenderer.Render(slideItem, "In"));
+
+                blogcards.Add(new Blogcard
+                {
+                    Image = image,
+                    Blog_Name = name,
+                    Blog_Description = description,
+                    PostBy = postby,
+                    In = In,
+                });
+            }
+            model.Blogcard = blogcards;
+            return View(model);
+        }
+
+
     }
 }

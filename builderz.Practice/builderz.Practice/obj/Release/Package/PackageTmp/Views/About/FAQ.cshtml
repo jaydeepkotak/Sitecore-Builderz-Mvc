@@ -6,8 +6,6 @@
 
 @if (Model != null)
 {
-
-
     <!-- FAQs Start -->
     <div class="faqs">
         <div class="container">
@@ -16,125 +14,61 @@
                 <h2>You May Ask</h2>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    @{
-                        var cnt = 1;
-                        var countdata = Math.Ceiling(Convert.ToDouble(Model.FAQData.Count) / 2);
-                        var part = "";
-                        var align = "";
-                    }
-                    @foreach (var item in Model.FAQData)
-                    {
-                        var collapse = "collapse" + cnt;
-                        var delay = "0." + cnt + "s";
-                        if (cnt == 5)
-                        {
+                @{
+                    int c = 0;
+                    int a = 0;
+                    int cnt = 1;
 
-                            part = "accordion-1";
-                            align = "fadeInLeft";
-                            <div id=@part>
-                                <div class="card wow @align" data-wow-delay="@delay">
-                                    <div class="card-header">
-                                        <a class="card-link collapsed" data-toggle="collapse" href="#@collapse">
-                                            @item.Question
-                                        </a>
-                                    </div>
-                                    <div id="@collapse" class="collapse" data-parent="#@part">
-                                        <div class="card-body">
-                                            @item.Answer
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        else
+                }
+                <div class="col-md-6">
+                    <div id="accordion-1">
+                        @for (int i = 0; i < Model.FAQData.Count / 2; i++)
                         {
-                            part = "accordion-2";
-                            align = "fadeInRight";
-                            <div id=@part>
-                                <div class="card wow @align" data-wow-delay="@delay">
-                                    <div class="card-header">
-                                        <a class="card-link collapsed" data-toggle="collapse" href="#@collapse">
-                                            @item.Question
-                                        </a>
-                                    </div>
-                                    <div id="@collapse" class="collapse" data-parent="#@part">
-                                        <div class="card-body">
-                                            @item.Answer
-                                        </div>
+                            var delay = "0." + c + "s";
+                            var collapse = "collapse" + cnt;
+                            <div class="card wow fadeInLeft" data-wow-delay="@delay">
+                                <div class="card-header">
+                                    <a class="card-link collapsed" data-toggle="collapse" href="#@collapse">
+                                        @Model.FAQData[i].Question
+                                    </a>
+                                </div>
+                                <div id="@collapse" class="collapse" data-parent="#accordion-1">
+                                    <div class="card-body">
+                                        @Model.FAQData[i].Answer
                                     </div>
                                 </div>
                             </div>
+                            c++;
+                            cnt++;
                         }
-                        cnt++;
-                    }
-                </div>
-               @* <div class="col-md-6">
-                    <div id="accordion-2">
-                        <div class="card wow fadeInRight" data-wow-delay="0.1s">
-                            <div class="card-header">
-                                <a class="card-link collapsed" data-toggle="collapse" href="#collapseSix">
-                                    Lorem ipsum dolor sit amet?
-                                </a>
-                            </div>
-                            <div id="collapseSix" class="collapse" data-parent="#accordion-2">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.2s">
-                            <div class="card-header">
-                                <a class="card-link collapsed" data-toggle="collapse" href="#collapseSeven">
-                                    Lorem ipsum dolor sit amet?
-                                </a>
-                            </div>
-                            <div id="collapseSeven" class="collapse" data-parent="#accordion-2">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.3s">
-                            <div class="card-header">
-                                <a class="card-link collapsed" data-toggle="collapse" href="#collapseEight">
-                                    Lorem ipsum dolor sit amet?
-                                </a>
-                            </div>
-                            <div id="collapseEight" class="collapse" data-parent="#accordion-2">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.4s">
-                            <div class="card-header">
-                                <a class="card-link collapsed" data-toggle="collapse" href="#collapseNine">
-                                    Lorem ipsum dolor sit amet?
-                                </a>
-                            </div>
-                            <div id="collapseNine" class="collapse" data-parent="#accordion-2">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card wow fadeInRight" data-wow-delay="0.5s">
-                            <div class="card-header">
-                                <a class="card-link collapsed" data-toggle="collapse" href="#collapseTen">
-                                    Lorem ipsum dolor sit amet?
-                                </a>
-                            </div>
-                            <div id="collapseTen" class="collapse" data-parent="#accordion-2">
-                                <div class="card-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non.
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>*@
+                </div>
+               
+                <div class="col-md-6">
+                    <div id="accordion-2">
+                        @for (int i = c; i < Model.FAQData.Count; i++)
+                        {
+                            var collapse = "collapse" + cnt;
+                            var delay = "0." + a + "s";
+                            <div class="card wow fadeInRight" data-wow-delay="@delay">
+                                <div class="card-header">
+                                    <a class="card-link collapsed" data-toggle="collapse" href="#@collapse">
+                                        @Model.FAQData[i].Question
+                                    </a>
+                                </div>
+                                <div id="@collapse" class="collapse" data-parent="#accordion-2">
+                                    <div class="card-body">
+                                        @Model.FAQData[i].Answer
+                                    </div>
+                                </div>
+                            </div>
+                            a++;
+                            cnt++;
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- FAQs End -->
-                        }
+}

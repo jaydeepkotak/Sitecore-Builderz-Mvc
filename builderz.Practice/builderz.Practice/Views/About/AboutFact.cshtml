@@ -3,37 +3,52 @@
 @using Sitecore.Mvc.Presentation
 @using builderz.Practice.Model
 @model AboutFactModel
+@if (Model != null)
+{
 
-@{ 
-    var c = 2;
-}
-<!-- Fact Start -->
-<div class="fact">
-    <div class="container-fluid">
-        <div class="row counters">
-            @if (Model != null)
-            {
-                for (int i = 0; i < Model.Fact.Count / 2; i++)
-                {
-                    var activeClass = i == 0 ? "col-md-6 fact-left wow slideInLeft" : "col-md-6 fact-right wow slideInRight";
-                    <div class="@activeClass">
-                        <div class="row">
-                            @for (int j = c;j< Model.Fact.Count;j++)
-                            {
-                                <div class="col-6">
-                                    <div class="fact-icon">
-                                        <i class="@Model.Fact[j].FactIcon"></i>
-                                    </div>
-                                    <div class="fact-text">
-                                        <h2 data-toggle="counter-up">@Model.Fact[j].Score</h2>
-                                        <p>@Model.Fact[j].Title</p>
-                                    </div>
+    <!-- Fact Start -->
+    <div class="fact">
+        <div class="container-fluid">
+            <div class="row counters">
+                <div class="col-md-6 fact-left wow slideInLeft">
+                    <div class="row">
+                        @{
+                            int c = 0;
+                        }
+                        @for (int i = 0; i < Model.Fact.Count / 2; i++)
+                        {
+                            <div class="col-6">
+                                <div class="fact-icon">
+                                    <i class="@Model.Fact[i].FactIcon"></i>
                                 </div>
-                            }
+                                <div class="fact-text">
+                                    <h2 data-toggle="counter-up">@Model.Fact[i].Score</h2>
+                                    <p>@Model.Fact[i].Title</p>
+                                </div>
+                            </div>
+                            c++;
+                        }
                         </div>
-                    </div>
-                }
-            }
+                </div>
+                <div class="col-md-6 fact-right wow slideInRight">
+                    <div class="row">
+                        @for (int i = c; i < Model.Fact.Count; i++)
+                        {
+                            <div class="col-6">
+                                <div class="fact-icon">
+                                    <i class="@Model.Fact[i].FactIcon"></i>
+                                </div>
+                                <div class="fact-text">
+                                    <h2 data-toggle="counter-up">@Model.Fact[i].Score</h2>
+                                    <p>@Model.Fact[i].Title</p>
+                                </div>
+                            </div>
+                            c++;
+                        }
+                        </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <!-- Fact End -->
+}

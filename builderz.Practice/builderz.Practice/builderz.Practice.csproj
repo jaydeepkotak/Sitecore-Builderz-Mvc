@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Model\AboutViewModel.cs" />
     <Compile Include="Model\AboutFactModel.cs" />
+    <Compile Include="Model\BlogModel.cs" />
     <Compile Include="Model\CarouselModel.cs" />
     <Compile Include="Model\FAQModel.cs" />
     <Compile Include="Model\FeatureModel.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Views\About\TextWidget.cshtml" />
     <Content Include="Views\About\RelatedPost.cshtml" />
     <Content Include="Views\About\SinglePageImg1.cshtml" />
+    <Content Include="Views\About\Blog.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
