@@ -1,0 +1,40 @@
+﻿
+@using Sitecore.Mvc
+@using Sitecore.Mvc.Presentation
+@using builderz.Practice.Model
+@model ContactModel
+
+@if (Model != null)
+{
+    <!-- Contact Start -->
+    <div class="contact wow fadeInUp">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>@Html.Sitecore().Field("Title", Model.Item)</p>
+                <h2>@Html.Sitecore().Field("SubTitle", Model.Item)</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-info">
+                        @foreach (var item in Model.ContactDetail)
+                        {
+                            <div class="contact-item">
+                                <i class="@item.FlatIcon"></i>
+                                <div class="contact-text">
+                                    <h2>@item.Main_Info</h2>
+                                    <p>@item.Sub_Info</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-form">
+                    @Html.Sitecore().Placeholder("form")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+}

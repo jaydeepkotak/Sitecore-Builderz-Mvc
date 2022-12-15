@@ -586,5 +586,34 @@ namespace builderz.Practice.Controllers
         }
 
 
+        public ActionResult Contact()
+        {
+            var model = new ContactModel()
+            {
+                Item = RenderingContext.Current?.Rendering.Item
+            };
+            List<ContactDetail> contactdetails = new List<ContactDetail>();
+            var dataSource = RenderingContext.Current?.Rendering.Item;
+            MultilistField contactField = dataSource.Fields["Contact_Cards"];
+            var slideItems = contactField.GetItems();
+
+            foreach (var slideItem in slideItems)
+            {
+                var maininfo = new MvcHtmlString(FieldRenderer.Render(slideItem, "Main_Info"));
+                var subinfo = new MvcHtmlString(FieldRenderer.Render(slideItem, "Sub_Info"));
+                var icon = new MvcHtmlString(FieldRenderer.Render(slideItem, "FlatIcon"));
+
+                contactdetails.Add(new ContactDetail
+                {
+                    Main_Info = maininfo,
+                    Sub_Info = subinfo,
+                    FlatIcon = icon
+
+                });
+            }
+            model.ContactDetail = contactdetails;
+            return View(model);
+        }
+
     }
 }
